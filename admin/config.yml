@@ -1,0 +1,43 @@
+# ตั้งค่า Decap CMS  (หน้าแก้ไขเนื้อหาที่ /admin)  -- ยังไม่ได้ทดสอบกับ repo จริง
+# ต้องแก้ repo ให้ตรงกับ GitHub ของโปรเจกต์ และตั้งระบบล็อกอิน (ดู README.txt)
+backend:
+  name: github
+  repo: YOUR-ORG/YOUR-REPO
+  branch: main
+media_folder: images/articles
+public_folder: /images/articles
+collections:
+  - name: data
+    label: เนื้อหาเว็บไซต์
+    files:
+      - name: articles
+        label: บทความ
+        file: data/articles.json
+        fields:
+          - label: รายการบทความ
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - {label: "รหัสลิงก์ (ภาษาอังกฤษ ตัวเล็ก ใช้ - แทนเว้นวรรค ห้ามซ้ำ)", name: id, widget: string}
+              - {label: ชื่อบทความ, name: title, widget: string}
+              - {label: รูปปก, name: image, widget: image, required: false}
+              - {label: ข้อความย่อ (แสดงในการ์ด), name: excerpt, widget: text}
+              - {label: "เนื้อหาเต็ม (เว้นบรรทัดว่าง = ย่อหน้าใหม่)", name: body, widget: text, required: false}
+              - {label: วันที่, name: date, widget: string, required: false}
+              - {label: แสดงในหน้าหลัก, name: featured, widget: boolean, default: false}
+      - name: stories
+        label: เรื่องสั้นและหนังสือ
+        file: data/stories.json
+        fields:
+          - label: รายการหนังสือ
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - {label: รหัสลิงก์, name: id, widget: string}
+              - {label: ชื่อหนังสือ, name: title, widget: string}
+              - {label: ผู้แต่ง, name: author, widget: string}
+              - {label: ปก, name: cover, widget: image, required: false}
+              - {label: คำอธิบาย, name: description, widget: text}
+              - {label: "ลิงก์ปุ่มอ่าน (เว้นว่างได้)", name: link, widget: string, required: false}
