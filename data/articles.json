@@ -46,19 +46,19 @@
       "featured": false
     },
     {
-      "id": "ir-doctor-palliative-care",
-      "title": "Palliative Care: \"หมอ IR\" กับการดูแลที่ไม่สิ้นสุด",
+      "id": "palliative-care-terminal",
+      "title": "Palliative care กับผู้ป่วยระยะสุดท้าย",
       "image": "",
-      "excerpt": "(รอข้อความย่อจากทีม)",
+      "excerpt": "Palliative care เป็นรูปแบบการดูแลสุขภาพแบบองค์รวมสำหรับผู้ป่วยด้วยโรคที่คุกคามต่อชีวิต ซึ่ง ไม่สามารถรักษาให้หายขาดได้ รวมทั้งผู้ป่วยที่ป่วยด้วยโรคระยะสุดท้าย และครอบครัวของผู้ป่วย...",
       "body": "",
       "date": "",
       "featured": true
     },
     {
-      "id": "palliative-care-terminal",
-      "title": "Palliative care กับผู้ป่วยระยะสุดท้าย",
+      "id": "ir-doctor-palliative-care",
+      "title": "Palliative Care: \"หมอ IR\" กับการดูแลที่ไม่สิ้นสุด",
       "image": "",
-      "excerpt": "Palliative care เป็นรูปแบบการดูแลสุขภาพแบบองค์รวมสำหรับผู้ป่วยด้วยโรคที่คุกคามต่อชีวิต ซึ่ง ไม่สามารถรักษาให้หายขาดได้ รวมทั้งผู้ป่วยที่ป่วยด้วยโรคระยะสุดท้าย และครอบครัวของผู้ป่วย...",
+      "excerpt": "(รอข้อความย่อจากทีม)",
       "body": "",
       "date": "",
       "featured": true
