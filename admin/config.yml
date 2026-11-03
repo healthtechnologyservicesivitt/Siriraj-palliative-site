@@ -2,7 +2,7 @@
 # ต้องแก้ repo ให้ตรงกับ GitHub ของโปรเจกต์ และตั้งระบบล็อกอิน (ดู README.txt)
 backend:
   name: github
-  repo: YOUR-ORG/YOUR-REPO
+  repo: healthtechnologyservicesivitt/siriraj-palliative-site
   branch: main
 media_folder: images/articles
 public_folder: /images/articles
