@@ -19,11 +19,13 @@
       <p>เว็บไซต์นี้จัดทำขึ้นเพื่อเผยแพร่ข้อมูลความรู้เกี่ยวกับการดูแลแบบประคับประคอง โปรดติดต่อหน่วยงานเจ้าของเว็บไซต์เพื่อสอบถามข้อมูลเฉพาะกรณี</p>
       <div class="row">อีเมล<br>ใส่อีเมลหน่วยงาน</div><div class="row">โทรศัพท์<br>ใส่หมายเลขติดต่อหน่วยงาน</div><div class="row">ที่อยู่<br>ใส่ที่อยู่หน่วยงาน</div></section>
     <section class="panel form"><h2>ส่งข้อความถึงเรา</h2><p>กรอกข้อมูลด้านล่าง (ตัวอย่างแบบฟอร์มสำหรับต้นแบบ)</p>
-      <form id="contact-form">
-        <label for="name">ชื่อผู้ติดต่อ</label><input id="name" required placeholder="ชื่อของคุณ">
-        <label for="email">อีเมล</label><input id="email" type="email" required placeholder="you@example.com">
-        <label for="topic">หัวข้อที่ต้องการติดต่อ</label><select id="topic"><option>สอบถามข้อมูลเว็บไซต์</option><option>ข้อเสนอแนะ</option><option>อื่น ๆ</option></select>
-        <label for="msg">ข้อความ</label><textarea id="msg" required placeholder="พิมพ์ข้อความของคุณที่นี่"></textarea>
+      <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p hidden><label>อย่ากรอกช่องนี้ <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <label for="name">ชื่อผู้ติดต่อ</label><input id="name" name="name" required placeholder="ชื่อของคุณ">
+        <label for="email">อีเมล</label><input id="email" name="email" type="email" required placeholder="you@example.com">
+        <label for="topic">หัวข้อที่ต้องการติดต่อ</label><select id="topic" name="topic"><option>สอบถามข้อมูลเว็บไซต์</option><option>ข้อเสนอแนะ</option><option>อื่น ๆ</option></select>
+        <label for="msg">ข้อความ</label><textarea id="msg" name="message" required placeholder="พิมพ์ข้อความของคุณที่นี่"></textarea>
         <button class="btn" type="submit">ส่งข้อความ</button>
         <p class="form-ok" role="status">ขอบคุณค่ะ เราได้รับข้อความของคุณแล้ว (ตัวอย่างต้นแบบ)</p>
       </form></section>
