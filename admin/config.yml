@@ -224,7 +224,7 @@ collections:
   - name: articles
     label: บทความ
     label_singular: บทความ
-    folder: content/articles
+    folder: articles
     create: true
     extension: json
     format: json
