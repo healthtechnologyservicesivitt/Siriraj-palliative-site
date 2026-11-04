@@ -3,14 +3,13 @@ backend:
   name: github
   repo: healthtechnologyservicesivitt/Siriraj-palliative-site
   branch: main
-media_folder: images/articles
-public_folder: /images/articles
+# คลังรูปภาพ: รูปที่อัปโหลดใหม่ทุกที่จะเก็บรวมในโฟลเดอร์เดียว (ดู/เลือกซ้ำได้ที่แท็บ Media)
+media_folder: images/uploads
+public_folder: /images/uploads
 collections:
   # ============ กลุ่ม 1: หน้าเว็บ (ข้อความ/รูป/เมนู/ติดต่อ) ============
   - name: pages
     label: หน้าเว็บ
-    media_folder: images/uploads
-    public_folder: /images/uploads
     files:
       - name: settings
         label: "ตั้งค่าทั่วไป (ชื่อเว็บ โลโก้ เมนู footer)"
@@ -221,26 +220,40 @@ collections:
               - {label: รูป, name: image, widget: image}
               - {label: "คำอธิบายรูป (สั้นๆ)", name: alt, widget: string, required: false}
 
-  # ============ กลุ่ม 2: บทความและหนังสือ ============
+  # ============ กลุ่ม 2: บทความ (แยกเป็นรายชิ้น) ============
+  - name: articles
+    label: บทความ
+    label_singular: บทความ
+    folder: content/articles
+    create: true
+    extension: json
+    format: json
+    slug: "a{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
+    identifier_field: title
+    summary: "{{title}}"
+    view_filters:
+      - {label: "ฉบับร่าง (ยังไม่แสดงบนเว็บ)", field: draft, pattern: true}
+      - {label: "ขึ้นหน้าหลัก", field: featured, pattern: true}
+    fields:
+      - {label: หัวข้อบทความ, name: title, widget: string}
+      - {label: วันที่เผยแพร่, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", required: false, hint: "บทความที่ใหม่กว่าจะขึ้นก่อน"}
+      - {label: รูปปก, name: image, widget: image, required: false, hint: "กด 'เลือกรูปจากคลัง' เพื่อใช้รูปที่เคยอัปโหลดแล้ว หรืออัปโหลดรูปใหม่"}
+      - {label: "ข้อความย่อ (แสดงในการ์ดและหน้าหลัก)", name: excerpt, widget: text, hint: "สั้นๆ 2-3 บรรทัด"}
+      - label: เนื้อหาเต็ม
+        name: body
+        widget: markdown
+        required: false
+        buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
+        editor_components: [image]
+        hint: "ใช้ปุ่มด้านบนใส่หัวข้อย่อย ตัวหนา ลิงก์ รายการ และรูป (ปุ่ม + > Image)"
+      - {label: "ขึ้นหน้าหลัก (แสดงในส่วนบทความ)", name: featured, widget: boolean, default: false, hint: "หน้าหลักแสดงบทความเด่น 1 ชิ้นใหญ่ + 2 ชิ้นรอง"}
+      - {label: "ฉบับร่าง (ติ๊ก = ยังไม่แสดงบนเว็บ)", name: draft, widget: boolean, default: false, hint: "ยังเขียนไม่เสร็จ? ติ๊กไว้ก่อน แล้วค่อยเอาติ๊กออกเมื่อพร้อมเผยแพร่"}
+      - {label: "ลำดับ (ไม่จำเป็น)", name: order, widget: number, value_type: int, required: false, hint: "ใช้กับบทความที่ไม่มีวันที่: เลขน้อยแสดงก่อน"}
+
+  # ============ กลุ่ม 3: เรื่องสั้นและหนังสือ ============
   - name: data
-    label: บทความและหนังสือ
+    label: เรื่องสั้นและหนังสือ
     files:
-      - name: articles
-        label: บทความ
-        file: data/articles.json
-        fields:
-          - label: รายการบทความ
-            name: items
-            widget: list
-            summary: "{{fields.title}}"
-            fields:
-              - {label: "รหัสลิงก์ (ภาษาอังกฤษ ตัวเล็ก ใช้ - แทนเว้นวรรค ห้ามซ้ำ)", name: id, widget: string}
-              - {label: ชื่อบทความ, name: title, widget: string}
-              - {label: รูปปก, name: image, widget: image, required: false}
-              - {label: ข้อความย่อ (แสดงในการ์ด), name: excerpt, widget: text}
-              - {label: "เนื้อหาเต็ม (เว้นบรรทัดว่าง = ย่อหน้าใหม่)", name: body, widget: text, required: false}
-              - {label: วันที่, name: date, widget: string, required: false}
-              - {label: แสดงในหน้าหลัก, name: featured, widget: boolean, default: false}
       - name: stories
         label: เรื่องสั้นและหนังสือ
         file: data/stories.json
