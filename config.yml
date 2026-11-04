@@ -1,0 +1,258 @@
+# ตั้งค่า Decap CMS (หน้าแก้ไขเนื้อหาที่ /admin)
+backend:
+  name: github
+  repo: healthtechnologyservicesivitt/Siriraj-palliative-site
+  branch: main
+media_folder: images/articles
+public_folder: /images/articles
+collections:
+  # ============ กลุ่ม 1: หน้าเว็บ (ข้อความ/รูป/เมนู/ติดต่อ) ============
+  - name: pages
+    label: หน้าเว็บ
+    media_folder: images/uploads
+    public_folder: /images/uploads
+    files:
+      - name: settings
+        label: "ตั้งค่าทั่วไป (ชื่อเว็บ โลโก้ เมนู footer)"
+        file: data/pages/settings.json
+        fields:
+          - {label: ชื่อเว็บ, name: site_name, widget: string, hint: "แสดงบนแท็บเบราว์เซอร์และข้อความอธิบายโลโก้"}
+          - {label: "ข้อความใต้โลโก้ (footer)", name: tagline, widget: text}
+          - {label: โลโก้, name: logo, widget: image, required: false, hint: "ถ้าไม่เปลี่ยน ให้เว้นไว้ตามเดิม"}
+          - label: "เมนูด้านบน (แก้ชื่อ / ซ่อน-แสดง / ลากสลับลำดับได้)"
+            name: menu
+            widget: list
+            collapsed: false
+            summary: "{{fields.label}}"
+            allow_add: false
+            allow_remove: false
+            fields:
+              - label: "หน้าปลายทาง (ห้ามเปลี่ยน)"
+                name: page
+                widget: select
+                options:
+                  - {label: "หน้าหลัก", value: home}
+                  - {label: "โพสต์", value: posts}
+                  - {label: "เกี่ยวกับ", value: about}
+                  - {label: "บทความ", value: articles}
+                  - {label: "ความรู้", value: knowledge}
+                  - {label: "เรื่องสั้นและหนังสือ", value: stories}
+                  - {label: "สื่อ", value: media}
+                  - {label: "ติดต่อเรา", value: contact}
+              - {label: ชื่อที่แสดงในเมนู, name: label, widget: string}
+              - {label: แสดงในเมนู, name: show, widget: boolean, default: true}
+          - label: "Footer: คอลัมน์ลิงก์ (2 คอลัมน์)"
+            name: footer_columns
+            widget: list
+            summary: "{{fields.title}}"
+            allow_add: false
+            allow_remove: false
+            fields:
+              - {label: หัวข้อคอลัมน์, name: title, widget: string}
+              - label: ลิงก์ในคอลัมน์
+                name: links
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - {label: ข้อความ, name: label, widget: string}
+                  - label: "ลิงก์ไปหน้าในเว็บ (เลือกจากรายการ)"
+                    name: page
+                    widget: select
+                    required: false
+                    options:
+                      - {label: "หน้าหลัก", value: home}
+                      - {label: "โพสต์", value: posts}
+                      - {label: "เกี่ยวกับ", value: about}
+                      - {label: "บทความ", value: articles}
+                      - {label: "ความรู้", value: knowledge}
+                      - {label: "เรื่องสั้นและหนังสือ", value: stories}
+                      - {label: "สื่อ", value: media}
+                      - {label: "ติดต่อเรา", value: contact}
+                  - {label: "หรือใส่ลิงก์ภายนอก เช่น https://… (ถ้าใส่ จะใช้ช่องนี้แทนช่องด้านบน)", name: url, widget: string, required: false}
+          - {label: "Footer: หัวข้อคอลัมน์ติดต่อ", name: footer_contact_title, widget: string}
+          - {label: "Footer: ข้อความลิขสิทธิ์", name: copyright, widget: string}
+
+      - name: home
+        label: หน้าหลัก
+        file: data/pages/home.json
+        fields:
+          - label: "ปุ่มบนภาพหลัก"
+            name: hero
+            widget: object
+            fields:
+              - {label: ข้อความบนปุ่ม, name: button_text, widget: string}
+              - label: "ลิงก์ไปหน้าในเว็บ (เลือกจากรายการ)"
+                name: page
+                widget: select
+                required: false
+                options:
+                  - {label: "หน้าหลัก", value: home}
+                  - {label: "โพสต์", value: posts}
+                  - {label: "เกี่ยวกับ", value: about}
+                  - {label: "บทความ", value: articles}
+                  - {label: "ความรู้", value: knowledge}
+                  - {label: "เรื่องสั้นและหนังสือ", value: stories}
+                  - {label: "สื่อ", value: media}
+                  - {label: "ติดต่อเรา", value: contact}
+              - {label: "หรือใส่ลิงก์ภายนอก เช่น https://… (ถ้าใส่ จะใช้ช่องนี้แทนช่องด้านบน)", name: url, widget: string, required: false}
+          - label: "ส่วนที่ 1: ทำความรู้จัก (การ์ดมีรูป 4 ใบ)"
+            name: intro
+            widget: object
+            fields:
+              - {label: หัวข้อ, name: title, widget: string}
+              - {label: ข้อความนำ, name: lead, widget: text}
+              - label: การ์ด
+                name: cards
+                widget: list
+                collapsed: true
+                summary: "{{fields.title}}"
+                allow_add: false
+                allow_remove: false
+                fields:
+                  - {label: รูป, name: image, widget: image, required: false}
+                  - {label: ชื่อการ์ด, name: title, widget: string}
+                  - {label: คำอธิบาย, name: text, widget: text}
+                  - label: "ลิงก์ไปหน้าในเว็บ (เลือกจากรายการ)"
+                    name: page
+                    widget: select
+                    required: false
+                    options:
+                      - {label: "หน้าหลัก", value: home}
+                      - {label: "โพสต์", value: posts}
+                      - {label: "เกี่ยวกับ", value: about}
+                      - {label: "บทความ", value: articles}
+                      - {label: "ความรู้", value: knowledge}
+                      - {label: "เรื่องสั้นและหนังสือ", value: stories}
+                      - {label: "สื่อ", value: media}
+                      - {label: "ติดต่อเรา", value: contact}
+                  - {label: "หรือใส่ลิงก์ภายนอก เช่น https://… (ถ้าใส่ จะใช้ช่องนี้แทนช่องด้านบน)", name: url, widget: string, required: false}
+          - label: "ส่วนที่ 2: การดูแลแบบประคับประคอง (ไอคอน 6 ช่อง)"
+            name: care
+            widget: object
+            fields:
+              - {label: หัวข้อ, name: title, widget: string}
+              - {label: "ข้อความอธิบาย (เว้นบรรทัดว่าง = ย่อหน้าใหม่)", name: text, widget: text}
+              - label: ช่องไอคอน
+                name: items
+                widget: list
+                collapsed: true
+                summary: "{{fields.title}}"
+                allow_add: false
+                allow_remove: false
+                fields:
+                  - label: ไอคอน
+                    name: icon
+                    widget: select
+                    options:
+                      - {label: "คน (ร่างกาย)", value: body}
+                      - {label: "หัวใจ (จิตใจ)", value: heart}
+                      - {label: "แสงอาทิตย์ (จิตวิญญาณ)", value: spirit}
+                      - {label: "บ้าน (ครอบครัว)", value: family}
+                      - {label: "คนหลายคน (สังคม)", value: social}
+                      - {label: "ปฏิทิน (วางแผน)", value: plan}
+                  - {label: ชื่อ, name: title, widget: string}
+                  - {label: คำอธิบายสั้น, name: text, widget: string}
+                  - label: "ลิงก์ไปหน้าในเว็บ (เลือกจากรายการ)"
+                    name: page
+                    widget: select
+                    required: false
+                    options:
+                      - {label: "หน้าหลัก", value: home}
+                      - {label: "โพสต์", value: posts}
+                      - {label: "เกี่ยวกับ", value: about}
+                      - {label: "บทความ", value: articles}
+                      - {label: "ความรู้", value: knowledge}
+                      - {label: "เรื่องสั้นและหนังสือ", value: stories}
+                      - {label: "สื่อ", value: media}
+                      - {label: "ติดต่อเรา", value: contact}
+                  - {label: "หรือใส่ลิงก์ภายนอก เช่น https://… (ถ้าใส่ จะใช้ช่องนี้แทนช่องด้านบน)", name: url, widget: string, required: false}
+          - {label: "หัวข้อส่วนบทความ", name: articles_title, widget: string}
+          - {label: "หัวข้อส่วนติดต่อเรา", name: contact_title, widget: string}
+
+      - name: about
+        label: เกี่ยวกับ
+        file: data/pages/about.json
+        fields:
+          - {label: รูปด้านบน, name: image, widget: image, required: false}
+          - {label: คำอธิบายรูป (สำหรับผู้พิการทางสายตา), name: image_alt, widget: string, required: false}
+          - {label: หัวข้อ, name: title, widget: string}
+          - {label: "เนื้อหา (เว้นบรรทัดว่าง = ย่อหน้าใหม่ / ใส่ **ข้อความ** = ตัวสีม่วง)", name: body, widget: text}
+          - {label: หัวข้อส่วนบริการ, name: services_title, widget: string}
+          - label: "บริการ (3 ช่อง)"
+            name: services
+            widget: list
+            summary: "{{fields.title}}"
+            allow_add: false
+            allow_remove: false
+            fields:
+              - {label: รูป, name: image, widget: image, required: false}
+              - {label: ชื่อบริการ, name: title, widget: string}
+              - {label: คำอธิบาย, name: text, widget: text}
+          - {label: "ข้อความปิดท้ายหน้า", name: tagline, widget: string}
+
+      - name: contact
+        label: "ติดต่อเรา (ข้อมูลนี้แสดงที่ footer หน้าหลัก และหน้าติดต่อเรา)"
+        file: data/pages/contact.json
+        fields:
+          - {label: เบอร์โทรศัพท์, name: phone, widget: string, required: false}
+          - {label: อีเมล, name: email, widget: string, required: false}
+          - {label: ที่อยู่, name: address, widget: text, required: false}
+          - {label: เวลาทำการ, name: hours, widget: string, required: false, hint: "เช่น จันทร์–ศุกร์ 08:00–16:00 (เว้นว่างได้)"}
+          - {label: หัวข้อหน้า, name: page_title, widget: string}
+          - {label: ข้อความใต้หัวข้อ, name: page_intro, widget: text}
+          - {label: ป้ายเล็กด้านบนกล่องข้อมูล, name: panel_kicker, widget: string, required: false}
+          - {label: หัวข้อกล่องข้อมูล, name: panel_title, widget: string}
+          - {label: ข้อความกล่องข้อมูล, name: panel_text, widget: text}
+          - {label: หัวข้อฟอร์ม, name: form_title, widget: string}
+          - {label: ข้อความใต้หัวข้อฟอร์ม, name: form_intro, widget: text}
+
+      - name: media
+        label: สื่อ (แกลเลอรีรูป)
+        file: data/pages/media.json
+        fields:
+          - {label: หัวข้อหน้า, name: title, widget: string}
+          - {label: ข้อความใต้หัวข้อ, name: intro, widget: text}
+          - label: "รูปในแกลเลอรี (เพิ่ม / ลบ / ลากสลับลำดับได้)"
+            name: images
+            widget: list
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: รูป, name: image, widget: image}
+              - {label: "คำอธิบายรูป (สั้นๆ)", name: alt, widget: string, required: false}
+
+  # ============ กลุ่ม 2: บทความและหนังสือ ============
+  - name: data
+    label: บทความและหนังสือ
+    files:
+      - name: articles
+        label: บทความ
+        file: data/articles.json
+        fields:
+          - label: รายการบทความ
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - {label: "รหัสลิงก์ (ภาษาอังกฤษ ตัวเล็ก ใช้ - แทนเว้นวรรค ห้ามซ้ำ)", name: id, widget: string}
+              - {label: ชื่อบทความ, name: title, widget: string}
+              - {label: รูปปก, name: image, widget: image, required: false}
+              - {label: ข้อความย่อ (แสดงในการ์ด), name: excerpt, widget: text}
+              - {label: "เนื้อหาเต็ม (เว้นบรรทัดว่าง = ย่อหน้าใหม่)", name: body, widget: text, required: false}
+              - {label: วันที่, name: date, widget: string, required: false}
+              - {label: แสดงในหน้าหลัก, name: featured, widget: boolean, default: false}
+      - name: stories
+        label: เรื่องสั้นและหนังสือ
+        file: data/stories.json
+        fields:
+          - label: รายการหนังสือ
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - {label: รหัสลิงก์, name: id, widget: string}
+              - {label: ชื่อหนังสือ, name: title, widget: string}
+              - {label: ผู้แต่ง, name: author, widget: string}
+              - {label: ปก, name: cover, widget: image, required: false}
+              - {label: คำอธิบาย, name: description, widget: text}
+              - {label: "ลิงก์ปุ่มอ่าน (เว้นว่างได้)", name: link, widget: string, required: false}

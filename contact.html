@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ศูนย์บริรักษ์ ศิริราช พื้นที่แห่งความรู้และการดูแลแบบประคับประคอง สำหรับผู้ป่วย ครอบครัว และผู้ดูแล">
+<link rel="icon" href="../images/logo-stacked.png">
+<title>ติดต่อเรา | ศูนย์บริรักษ์ ศิริราช</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@500;600&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="../" data-page="contact">
+<div id="site-header"></div>
+<main><div class="wrap">
+  <div class="page-head"><h1 data-f="page_title">ติดต่อเรา</h1><p data-f="page_intro">หากมีข้อเสนอแนะหรืออยากสอบถามเกี่ยวกับเนื้อหาบนเว็บไซต์ สามารถฝากข้อความไว้ได้</p></div>
+  <div class="contact">
+    <section class="panel info"><small data-f="panel_kicker">WE'RE HERE TO HELP</small><h2 data-f="panel_title">ยินดีรับฟังจากคุณ</h2>
+      <p data-f="panel_text">เว็บไซต์นี้จัดทำขึ้นเพื่อเผยแพร่ข้อมูลความรู้เกี่ยวกับการดูแลแบบประคับประคอง โปรดติดต่อหน่วยงานเจ้าของเว็บไซต์เพื่อสอบถามข้อมูลเฉพาะกรณี</p>
+      <div class="row" data-optwrap>อีเมล<br><span data-f="email" data-opt>ใส่อีเมลหน่วยงาน</span></div><div class="row" data-optwrap>โทรศัพท์<br><span data-f="phone" data-opt>ใส่หมายเลขติดต่อหน่วยงาน</span></div><div class="row" data-optwrap>ที่อยู่<br><span data-f="address" data-opt>ใส่ที่อยู่หน่วยงาน</span></div><div class="row" data-optwrap style="display:none">เวลาทำการ<br><span data-f="hours" data-opt></span></div></section>
+    <section class="panel form"><h2 data-f="form_title">ส่งข้อความถึงเรา</h2><p data-f="form_intro">กรอกข้อมูลด้านล่าง (ตัวอย่างแบบฟอร์มสำหรับต้นแบบ)</p>
+      <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p hidden><label>อย่ากรอกช่องนี้ <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <label for="name">ชื่อผู้ติดต่อ</label><input id="name" name="name" required placeholder="ชื่อของคุณ">
+        <label for="email">อีเมล</label><input id="email" name="email" type="email" required placeholder="you@example.com">
+        <label for="topic">หัวข้อที่ต้องการติดต่อ</label><select id="topic" name="topic"><option>สอบถามข้อมูลเว็บไซต์</option><option>ข้อเสนอแนะ</option><option>อื่น ๆ</option></select>
+        <label for="msg">ข้อความ</label><textarea id="msg" name="message" required placeholder="พิมพ์ข้อความของคุณที่นี่"></textarea>
+        <button class="btn" type="submit">ส่งข้อความ</button>
+        <p class="form-ok" role="status">ขอบคุณค่ะ เราได้รับข้อความของคุณแล้ว (ตัวอย่างต้นแบบ)</p>
+      </form></section>
+  </div>
+</div></main>
+<div id="site-footer"></div>
+<script src="../data/data.js"></script>
+<script src="../js/site-data.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/effects.js"></script>
+<script src="../js/contact.js"></script>
+</body>
+</html>
