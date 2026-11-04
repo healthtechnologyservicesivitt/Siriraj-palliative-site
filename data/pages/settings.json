@@ -50,7 +50,7 @@
       "links": [
         {
           "label": "Palliative Care",
-          "page": "",
+          "page": "home",
           "url": ""
         },
         {
@@ -59,13 +59,13 @@
           "url": ""
         },
         {
-          "label": "ข่าวสาร",
-          "page": "",
+          "label": "บทความ",
+          "page": "articles",
           "url": ""
         },
         {
-          "label": "ดาวน์โหลด",
-          "page": "",
+          "label": "สื่อ",
+          "page": "media",
           "url": ""
         }
       ]
@@ -75,17 +75,12 @@
       "links": [
         {
           "label": "ผู้ป่วย",
-          "page": "",
+          "page": "knowledge",
           "url": ""
         },
         {
           "label": "ครอบครัว",
-          "page": "",
-          "url": ""
-        },
-        {
-          "label": "ผู้ดูแล",
-          "page": "",
+          "page": "stories",
           "url": ""
         }
       ]
