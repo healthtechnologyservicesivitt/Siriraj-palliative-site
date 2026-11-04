@@ -1,0 +1,34 @@
+{
+  "title": "รูปภาพและสื่อความรู้",
+  "intro": "ภาพประกอบเพื่อช่วยอธิบายเรื่องการดูแลอย่างอ่อนโยน เข้าใจง่าย และเข้าถึงได้ทุกวัย",
+  "images": [
+    {
+      "image": "images/media/media-1.jpg",
+      "alt": "ภาพประกอบสื่อความรู้ 1"
+    },
+    {
+      "image": "images/media/media-2.jpg",
+      "alt": "ภาพประกอบสื่อความรู้ 2"
+    },
+    {
+      "image": "images/media/media-3.jpg",
+      "alt": "ภาพประกอบสื่อความรู้ 3"
+    },
+    {
+      "image": "images/media/media-4.jpg",
+      "alt": "ภาพประกอบสื่อความรู้ 4"
+    },
+    {
+      "image": "images/media/media-5.jpg",
+      "alt": "ภาพประกอบสื่อความรู้ 5"
+    },
+    {
+      "image": "images/media/media-6.jpg",
+      "alt": "ภาพประกอบสื่อความรู้ 6"
+    },
+    {
+      "image": "images/media/media-7.jpg",
+      "alt": "ภาพประกอบสื่อความรู้ 7"
+    }
+  ]
+}
