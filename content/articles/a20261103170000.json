@@ -1,9 +1,10 @@
 {
   "featured": true,
-  "draft": false,
+  "draft": true,
   "title": "บทความ 1",
   "date": "2026-11-04",
   "image": "/images/uploads/chatgpt-image-sep-25-2026-10_25_24-am.png",
   "excerpt": "บทความทดสอบ",
-  "body": "ทดสอบบาทความครั้งที่ 1"
+  "body": "ทดสอบบาทความครั้งที่ 1",
+  "order": 4
 }
