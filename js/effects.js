@@ -21,16 +21,19 @@
   [].forEach.call(box.children,function(b,j){b.setAttribute('aria-pressed',j===i)});try{localStorage.setItem('fs',i)}catch(e){}setTimeout(onScroll,50)}
  sizes.forEach(function(s,i){var b=document.createElement('button');b.type='button';b.textContent='ก';b.style.fontSize=(14+i*4)+'px';b.setAttribute('aria-label','ตัวอักษรขนาด'+labels[i]);b.onclick=function(){apply(i)};box.appendChild(b)});
  apply(cur);
- /* 4. ดูรูปขยายในหน้า สื่อ */
- var pics=[].slice.call(document.querySelectorAll('.masonry img'));
- if(pics.length){
+ /* 4. ดูรูปขยายในหน้า สื่อ (อ่านรายการรูปตอนกดเปิด เพราะแกลเลอรีวาดจากข้อมูลทีหลังได้) */
+ if(document.querySelector('.masonry')){
   var lb=fx('div','lb');lb.hidden=true;lb.setAttribute('role','dialog');lb.setAttribute('aria-label','ดูรูปขยาย');
   lb.innerHTML='<button class="lb-x" type="button" aria-label="ปิด">✕</button><button class="lb-p" type="button" aria-label="ภาพก่อนหน้า">‹</button><img alt=""><button class="lb-n" type="button" aria-label="ภาพถัดไป">›</button>';
-  var big=lb.querySelector('img'),at=0,opener=null;
+  var big=lb.querySelector('img'),at=0,opener=null,pics=[];
+  function list(){pics=[].slice.call(document.querySelectorAll('.masonry img'))}
+  function prep(){list();pics.forEach(function(p){if(p.dataset.lb)return;p.dataset.lb=1;p.tabIndex=0;p.setAttribute('role','button')})}
   function show(i){at=(i+pics.length)%pics.length;big.src=pics[at].src;big.alt=pics[at].alt}
-  function open(i){opener=document.activeElement;show(i);lb.hidden=false;lb.querySelector('.lb-x').focus()}
+  function open(i){opener=document.activeElement;list();show(i);lb.hidden=false;lb.querySelector('.lb-x').focus()}
   function close(){lb.hidden=true;if(opener)opener.focus()}
-  pics.forEach(function(p,i){p.tabIndex=0;p.setAttribute('role','button');p.onclick=function(){open(i)};p.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(i)}}});
+  prep();document.addEventListener('site:rendered',prep);
+  document.addEventListener('click',function(e){var p=e.target.closest&&e.target.closest('.masonry img');if(p){list();open(pics.indexOf(p))}});
+  document.addEventListener('keydown',function(e){var p=e.target.closest&&e.target.closest('.masonry img');if(p&&(e.key==='Enter'||e.key===' ')){e.preventDefault();list();open(pics.indexOf(p))}});
   lb.querySelector('.lb-x').onclick=close;lb.querySelector('.lb-p').onclick=function(){show(at-1)};lb.querySelector('.lb-n').onclick=function(){show(at+1)};
   lb.onclick=function(e){if(e.target===lb)close()};
   document.addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(at-1);if(e.key==='ArrowRight')show(at+1)});
