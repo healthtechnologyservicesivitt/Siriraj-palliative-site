@@ -1,0 +1,96 @@
+{
+  "site_name": "ศูนย์บริรักษ์ ศิริราช",
+  "tagline": "พื้นที่แห่งความรู้และการดูแล สำหรับผู้ป่วย ครอบครัว และผู้ดูแล",
+  "logo": "images/logo.png",
+  "menu": [
+    {
+      "page": "home",
+      "label": "หน้าหลัก",
+      "show": true
+    },
+    {
+      "page": "posts",
+      "label": "โพสต์",
+      "show": true
+    },
+    {
+      "page": "about",
+      "label": "เกี่ยวกับ",
+      "show": true
+    },
+    {
+      "page": "articles",
+      "label": "บทความ",
+      "show": true
+    },
+    {
+      "page": "knowledge",
+      "label": "ความรู้",
+      "show": true
+    },
+    {
+      "page": "stories",
+      "label": "เรื่องสั้น",
+      "show": true
+    },
+    {
+      "page": "media",
+      "label": "สื่อ",
+      "show": true
+    },
+    {
+      "page": "contact",
+      "label": "ติดต่อเรา",
+      "show": true
+    }
+  ],
+  "footer_columns": [
+    {
+      "title": "เมนู",
+      "links": [
+        {
+          "label": "Palliative Care",
+          "page": "",
+          "url": ""
+        },
+        {
+          "label": "ความรู้",
+          "page": "knowledge",
+          "url": ""
+        },
+        {
+          "label": "ข่าวสาร",
+          "page": "",
+          "url": ""
+        },
+        {
+          "label": "ดาวน์โหลด",
+          "page": "",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "title": "ข้อมูลสำหรับผู้ป่วย",
+      "links": [
+        {
+          "label": "ผู้ป่วย",
+          "page": "",
+          "url": ""
+        },
+        {
+          "label": "ครอบครัว",
+          "page": "",
+          "url": ""
+        },
+        {
+          "label": "ผู้ดูแล",
+          "page": "",
+          "url": ""
+        }
+      ]
+    }
+  ],
+  "footer_contact_title": "ติดต่อเรา",
+  "copyright": "© 2569 ศูนย์บริรักษ์ ศิริราช สงวนลิขสิทธิ์"
+}
