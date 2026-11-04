@@ -1,8 +1,9 @@
 {
   "hero": {
-    "button_text": "รู้จักการดูแลแบบประคับประคอง",
+    "button_text": "สื่อ",
     "button_page": "knowledge",
-    "button_url": ""
+    "button_url": "",
+    "page": "media"
   },
   "intro": {
     "title": "ทำความรู้จัก Palliative Care",
