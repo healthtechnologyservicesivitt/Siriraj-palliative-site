@@ -6,6 +6,30 @@
  function href(id){return window.ARTICLE_HREF?ARTICLE_HREF(id):B+'pages/article.html?id='+encodeURIComponent(id)}
  function page(n){return window.PAGE_HREF?PAGE_HREF(n):B+'pages/'+n+'.html'}
  function paras(t){return String(t||'').split(/\n\s*\n/).filter(function(x){return x.trim()}).map(function(x){return '<p>'+esc(x.trim()).replace(/\n/g,'<br>')+'</p>'}).join('')}
+ 
+ /* เนื้อหาบทความแบบ Markdown (หัวข้อย่อย ตัวหนา/เอียง ลิงก์ รูป รายการ คำอ้างอิง) — escape HTML ก่อนเสมอ และรับเฉพาะลิงก์ที่ปลอดภัย */
+ function safeUrl(u){u=String(u||'').replace(/&amp;/g,'&').trim();if(/^(https?:|mailto:|tel:|#)/i.test(u))return u;if(/^[a-z][a-z0-9+.-]*:/i.test(u)||/^\/\//.test(u))return '';return src(u)}
+ function inline(t){var keep=[];function hold(h){keep.push(h);return '\u0000'+(keep.length-1)+'\u0000'}
+  t=esc(t).replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+&quot;.*?&quot;)?\)/g,function(m,a,u){var s=safeUrl(u);return s?hold('<img src="'+esc(s)+'" alt="'+a+'">'):a})
+   .replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+&quot;.*?&quot;)?\)/g,function(m,a,u){var s=safeUrl(u);return s?hold('<a href="'+esc(s)+'"'+(/^https?:/i.test(s)?' target="_blank" rel="noopener"':'')+'>'+a+'</a>'):a});
+  t=t.replace(/\*\*(.+?)\*\*|__(.+?)__/g,function(m,a,b){return '<strong>'+(a||b)+'</strong>'}).replace(/(^|[^*\w])\*([^*\n]+)\*(?!\*)|(^|[^_\w])_([^_\n]+)_(?!\w)/g,function(m,p1,a,p2,b){return (p1||p2||'')+'<em>'+(a||b)+'</em>'});
+  return t.replace(/\u0000(\d+)\u0000/g,function(m,i){return keep[+i]})}
+ function md(text){var L=String(text||'').replace(/\r\n?/g,'\n').split('\n'),o=[],p=[],list=null,q=[];
+  function fp(){if(p.length){o.push('<p>'+p.map(inline).join('<br>')+'</p>');p=[]}}
+  function fl(){if(list){o.push('<'+list.t+'>'+list.i.map(function(x){return '<li>'+inline(x)+'</li>'}).join('')+'</'+list.t+'>');list=null}}
+  function fq(){if(q.length){o.push('<blockquote>'+q.map(inline).join('<br>')+'</blockquote>');q=[]}}
+  function all(){fp();fl();fq()}
+  L.forEach(function(l){var m;
+   if(!l.trim()){all();return}
+   if(m=l.match(/^(#{1,6})\s+(.*)$/)){all();var n=m[1].length<=2?2:m[1].length===3?3:4;o.push('<h'+n+'>'+inline(m[2])+'</h'+n+'>');return}
+   if(/^\s*([-*_])(\s*\1){2,}\s*$/.test(l)){all();o.push('<hr>');return}
+   if(m=l.match(/^>\s?(.*)$/)){fp();fl();q.push(m[1]);return}
+   if(m=l.match(/^\s*[-*+]\s+(.*)$/)){fp();fq();if(!list||list.t!=='ul'){fl();list={t:'ul',i:[]}}list.i.push(m[1]);return}
+   if(m=l.match(/^\s*\d+[.)]\s+(.*)$/)){fp();fq();if(!list||list.t!=='ol'){fl();list={t:'ol',i:[]}}list.i.push(m[1]);return}
+   fl();fq();p.push(l.trim())});
+  all();return o.join('')}
+ var MON=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+ function fmtDate(d){var m=String(d||'').match(/^(\d{4})-(\d{2})-(\d{2})/);return m&&MON[+m[2]-1]?(+m[3])+' '+MON[+m[2]-1]+' '+(+m[1]+543):String(d||'')}
  function done(){document.dispatchEvent(new Event('site:rendered'))}
  function load(){
   if(window.SITE_DATA&&(location.protocol==='file:'||window.SITE_INLINE))return Promise.resolve(window.SITE_DATA);
@@ -40,7 +64,7 @@
  function detail(el,id){
   var a=data.articles.filter(function(x){return x.id===id})[0];
   if(!a){el.innerHTML='<a class="back" href="'+page('articles')+'">← บทความทั้งหมด</a><p class="blank">ไม่พบบทความนี้</p>';return}
-  el.innerHTML='<a class="back" href="'+page('articles')+'">← บทความทั้งหมด</a><h1>'+esc(a.title)+'</h1>'+(a.date?'<p class="meta">'+esc(a.date)+'</p>':'')+(a.image?'<img class="cover" src="'+src(a.image)+'" alt="">':'')+'<div class="prose">'+paras(a.body||a.excerpt)+'</div>';
+  el.innerHTML='<a class="back" href="'+page('articles')+'">← บทความทั้งหมด</a><h1>'+esc(a.title)+'</h1>'+(a.date?'<p class="meta">'+esc(fmtDate(a.date))+'</p>':'')+(a.image?'<img class="cover" src="'+src(a.image)+'" alt="">':'')+'<div class="prose">'+md(a.body||a.excerpt)+'</div>';
   if(!window.SITE_INLINE)document.title=a.title+' | ศูนย์บริรักษ์ ศิริราช';done();
  }
  var ready=load().then(function(d){data=d;
