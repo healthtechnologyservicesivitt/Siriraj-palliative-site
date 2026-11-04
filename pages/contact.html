@@ -13,12 +13,12 @@
 <body data-base="../" data-page="contact">
 <div id="site-header"></div>
 <main><div class="wrap">
-  <div class="page-head"><h1>ติดต่อเรา</h1><p>หากมีข้อเสนอแนะหรืออยากสอบถามเกี่ยวกับเนื้อหาบนเว็บไซต์ สามารถฝากข้อความไว้ได้</p></div>
+  <div class="page-head"><h1 data-f="page_title">ติดต่อเรา</h1><p data-f="page_intro">หากมีข้อเสนอแนะหรืออยากสอบถามเกี่ยวกับเนื้อหาบนเว็บไซต์ สามารถฝากข้อความไว้ได้</p></div>
   <div class="contact">
-    <section class="panel info"><small>WE'RE HERE TO HELP</small><h2>ยินดีรับฟังจากคุณ</h2>
-      <p>เว็บไซต์นี้จัดทำขึ้นเพื่อเผยแพร่ข้อมูลความรู้เกี่ยวกับการดูแลแบบประคับประคอง โปรดติดต่อหน่วยงานเจ้าของเว็บไซต์เพื่อสอบถามข้อมูลเฉพาะกรณี</p>
-      <div class="row">อีเมล<br>ใส่อีเมลหน่วยงาน</div><div class="row">โทรศัพท์<br>ใส่หมายเลขติดต่อหน่วยงาน</div><div class="row">ที่อยู่<br>ใส่ที่อยู่หน่วยงาน</div></section>
-    <section class="panel form"><h2>ส่งข้อความถึงเรา</h2><p>กรอกข้อมูลด้านล่าง (ตัวอย่างแบบฟอร์มสำหรับต้นแบบ)</p>
+    <section class="panel info"><small data-f="panel_kicker">WE'RE HERE TO HELP</small><h2 data-f="panel_title">ยินดีรับฟังจากคุณ</h2>
+      <p data-f="panel_text">เว็บไซต์นี้จัดทำขึ้นเพื่อเผยแพร่ข้อมูลความรู้เกี่ยวกับการดูแลแบบประคับประคอง โปรดติดต่อหน่วยงานเจ้าของเว็บไซต์เพื่อสอบถามข้อมูลเฉพาะกรณี</p>
+      <div class="row" data-optwrap>อีเมล<br><span data-f="email" data-opt>ใส่อีเมลหน่วยงาน</span></div><div class="row" data-optwrap>โทรศัพท์<br><span data-f="phone" data-opt>ใส่หมายเลขติดต่อหน่วยงาน</span></div><div class="row" data-optwrap>ที่อยู่<br><span data-f="address" data-opt>ใส่ที่อยู่หน่วยงาน</span></div><div class="row" data-optwrap style="display:none">เวลาทำการ<br><span data-f="hours" data-opt></span></div></section>
+    <section class="panel form"><h2 data-f="form_title">ส่งข้อความถึงเรา</h2><p data-f="form_intro">กรอกข้อมูลด้านล่าง (ตัวอย่างแบบฟอร์มสำหรับต้นแบบ)</p>
       <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
         <p hidden><label>อย่ากรอกช่องนี้ <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
@@ -32,6 +32,8 @@
   </div>
 </div></main>
 <div id="site-footer"></div>
+<script src="../data/data.js"></script>
+<script src="../js/site-data.js"></script>
 <script src="../js/components.js"></script>
 <script src="../js/effects.js"></script>
 <script src="../js/contact.js"></script>
