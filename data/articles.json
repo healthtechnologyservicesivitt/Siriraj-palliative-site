@@ -10,6 +10,15 @@
       "featured": false
     },
     {
+      "id": "palliative-care-terminal",
+      "title": "Palliative care กับผู้ป่วยระยะสุดท้าย",
+      "image": "",
+      "excerpt": "Palliative care เป็นรูปแบบการดูแลสุขภาพแบบองค์รวมสำหรับผู้ป่วยด้วยโรคที่คุกคามต่อชีวิต ซึ่ง ไม่สามารถรักษาให้หายขาดได้ รวมทั้งผู้ป่วยที่ป่วยด้วยโรคระยะสุดท้าย และครอบครัวของผู้ป่วย...",
+      "body": "",
+      "date": "",
+      "featured": true
+    },
+    {
       "id": "palliative-not-waiting-to-die",
       "title": "Palliative Care ≠ รอวันตาย แต่มันคือการ \"เพิ่มชีวิต ให้กับวันเวลาที่เหลืออยู่\"",
       "image": "",
@@ -44,15 +53,6 @@
       "body": "",
       "date": "",
       "featured": false
-    },
-    {
-      "id": "palliative-care-terminal",
-      "title": "Palliative care กับผู้ป่วยระยะสุดท้าย",
-      "image": "",
-      "excerpt": "Palliative care เป็นรูปแบบการดูแลสุขภาพแบบองค์รวมสำหรับผู้ป่วยด้วยโรคที่คุกคามต่อชีวิต ซึ่ง ไม่สามารถรักษาให้หายขาดได้ รวมทั้งผู้ป่วยที่ป่วยด้วยโรคระยะสุดท้าย และครอบครัวของผู้ป่วย...",
-      "body": "",
-      "date": "",
-      "featured": true
     },
     {
       "id": "ir-doctor-palliative-care",
